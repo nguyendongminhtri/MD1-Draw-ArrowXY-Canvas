@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="500" height="300" style="border:1px solid grey"></canvas>
+<script>
+    const c = document.getElementById("myCanvas");
+    const ctx = c.getContext("2d");
+    let widthCanvas = c.width;
+    let heightCanvas = c.height;
+    console.log('width c ->', widthCanvas)
+
+    function drawLine(ctx, cx, cy) {
+        ctx.moveTo(cx, cy)
+        ctx.lineTo(cx, heightCanvas - cx);
+        ctx.lineTo(widthCanvas - cy, heightCanvas - cx);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'blue'
+        ctx.stroke()
+        ctx.closePath()
+        ctx.save()
+    }
+    drawLine(ctx, 10, 25);
+    drawArrowX(ctx, 10, 25)
+    drawArrowY(ctx, 25, 10)
+    function drawArrowX(ctx, cx, cy) {
+        ctx.save()
+        ctx.beginPath();
+        ctx.fillStyle = 'blue'
+        ctx.moveTo(cx, 0);
+        ctx.lineTo(2*cx, cy);
+        ctx.lineTo(0, cy);
+        ctx.lineTo(cx, 0);
+        ctx.stroke()
+        ctx.fill()
+        ctx.closePath()
+        ctx.save()
+    }
+    function drawArrowY(ctx, cx, cy) {
+        ctx.save()
+        ctx.beginPath();
+        ctx.fillStyle = 'blue'
+        ctx.moveTo(widthCanvas - cx , heightCanvas -cy);
+        ctx.lineTo(widthCanvas - cx , heightCanvas -2*cy);
+        ctx.lineTo(widthCanvas, heightCanvas -cy);
+        ctx.lineTo(widthCanvas -cx, heightCanvas);
+        ctx.lineTo(widthCanvas -cx, heightCanvas-cy);
+        ctx.stroke()
+        ctx.fill()
+        ctx.closePath()
+        ctx.save()
+    }
+</script>
+</body>
+</html>
